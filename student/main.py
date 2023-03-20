@@ -23,7 +23,7 @@ def get_session():
 def root():
     return "Welcome to student Application. Built with FastAPI."
 
-@app.post("/create ", response_model=schemas.studentall, status_code=status.HTTP_201_CREATED)
+@app.post("/create", response_model=schemas.studentall, status_code=status.HTTP_201_CREATED)
 def create_student(student: schemas.studentcreate, session: Session = Depends(get_session)):
 
     # create an instance of student Model
