@@ -2,7 +2,6 @@ from pydantic import BaseModel
 
 # Complete ToDo Schema (Pydantic Model)
 class studentcreate(BaseModel):
-    id : str
     name: str
    
 
