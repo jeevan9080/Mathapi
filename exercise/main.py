@@ -21,13 +21,13 @@ def get_session():
 
 @app.get("/")
 def root():
-    return "Welcome to User Application. Built with FastAPI and ❤️. "
+    return "Welcome to User Application. Built with FastAPI and. "
 
 @app.post("/user/create", response_model=schemas.userall, status_code=status.HTTP_201_CREATED)
 def create_user(user: schemas.usercreate, session: Session = Depends(get_session)):
 
     # create an instance of user Model
-    user_obj = models.user(task = user.task,
+    user_obj = models.user(email=user.email,
     password=user.password,
     phone=user.phone,
     city=user.city,
@@ -46,19 +46,19 @@ def create_user(user: schemas.usercreate, session: Session = Depends(get_session
 @app.get("/fetch_all_users", response_model = List[schemas.userall])
 def read_todo_list(session: Session = Depends(get_session)):
     # get all todo items    
-    user_list = session.query(models.User).all()
+    user_list = session.query(models.user).all()
     return user_list
     
 @app.get("/fetch_user_by_id/{id}", response_model=schemas.userall)
 def read_todo_id(id: int, session: Session = Depends(get_session)):
     # Fetch todo record using id from the table    
-    users_obj = session.query(models.User).get(id)
+    user_obj = session.query(models.user).get(id)
     # Check if there is record with the provided id, if not then Raise 404 Exception    
     if not user_obj:
         raise HTTPException(status_code=404, detail=f"user item with id {id} not found")
     return user_obj 
 
-@app.put("/user/update_users_by_id/{id}", response_model=schemas.userall)
+@app.put("/user/update_user_by_id/{id}", response_model=schemas.userall)
 def update_user(id: int, email: str, password:str, phone:str, session: Session = Depends(get_session)):
 
     # Fetch user record using id from the table
