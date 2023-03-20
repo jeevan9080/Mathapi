@@ -43,13 +43,13 @@ def create_user(user: schemas.usercreate, session: Session = Depends(get_session
     # return the user object
     return user_obj
 
-@app.get("/fetch_all_users", response_model = List[schemas.userall])
+@app.get("/users/fetch_all_users", response_model = List[schemas.userall])
 def read_todo_list(session: Session = Depends(get_session)):
     # get all todo items    
     user_list = session.query(models.user).all()
     return user_list
     
-@app.get("/fetch_user_by_id/{id}", response_model=schemas.userall)
+@app.get("/user/fetch_user_by_id/{id}", response_model=schemas.userall)
 def read_todo_id(id: int, session: Session = Depends(get_session)):
     # Fetch todo record using id from the table    
     user_obj = session.query(models.user).get(id)
@@ -58,7 +58,7 @@ def read_todo_id(id: int, session: Session = Depends(get_session)):
         raise HTTPException(status_code=404, detail=f"user item with id {id} not found")
     return user_obj 
 
-@app.put("/user/update_user_by_id/{id}", response_model=schemas.userall)
+@app.put("/users/update_users_by_id/{id}", response_model=schemas.userall)
 def update_user(id: int, email: str, password:str, phone:str, session: Session = Depends(get_session)):
 
     # Fetch user record using id from the table
@@ -76,7 +76,7 @@ def update_user(id: int, email: str, password:str, phone:str, session: Session =
 
     return user_obj
 
-@app.delete("/user/delete_user_by_id/{id}", response_model = str)
+@app.delete("/users/delete_users_by_id/{id}", response_model = str)
 def delete_user(id: int, session: Session = Depends(get_session)):
 
     # Fetch user record using id from the table
