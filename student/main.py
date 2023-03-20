@@ -27,7 +27,8 @@ def root():
 def create_student(student: schemas.studentcreate, session: Session = Depends(get_session)):
 
     # create an instance of student Model
-    student_obj = models.student(name=student.name)
+    student_obj = models.student(id=student.id,
+    name=student.name)
 
     # Add the object into our database Table
     session.add(student_obj)
