@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import os
 
-app = Flask(__name__, template_folder='template')
+app = Flask(__name__, template_folder='templates')
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "todo.db"))
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
