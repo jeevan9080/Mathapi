@@ -9,14 +9,14 @@ def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        return "Hello admin!"
+        return "Welcome, admin"
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
     if request.form['password'] == 'password' and request.form['username'] == 'admin':
         session['logged_in'] = True
     else:
-        flash('wrong password!')
+        flash('Login Failed')
     return home()
 
 if __name__ == "__main__":
