@@ -22,5 +22,5 @@ regressor.fit(X, y)
 pickle.dump(regressor, open('model2.pkl','wb'))
 
 # Loading model to compare the results
-model = pickle.load(open('model2.pkl','rb'))
+model = pickle.load(open('model2.pkl','rb')) 
 print(model.predict(X.iloc[0,:].values.reshape(1,-1)))
